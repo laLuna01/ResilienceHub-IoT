@@ -1,0 +1,440 @@
+[
+    {
+        "id": "a39c6af970d0b46b",
+        "type": "tab",
+        "label": "Dashboard Alerta de Desastres",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "b6a0d7e9.8a9c48",
+        "type": "mqtt-broker",
+        "name": "Broker MQTT",
+        "broker": "broker.hivemq.com",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "a4c1a2e0.0c8a3",
+        "type": "ui_tab",
+        "name": "Dashboard IoT",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "e1c1a2e0.0c8a3",
+        "type": "ui_group",
+        "name": "Monitoramento",
+        "tab": "a4c1a2e0.0c8a3",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "580b7fbe00458a69",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "mqtt_in_temperatura",
+        "type": "mqtt in",
+        "z": "a39c6af970d0b46b",
+        "name": "Temperatura",
+        "topic": "esp32/alertas/temperatura",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "b6a0d7e9.8a9c48",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 210,
+        "y": 120,
+        "wires": [
+            [
+                "ui_gauge_temperatura",
+                "ui_chart_temperatura"
+            ]
+        ]
+    },
+    {
+        "id": "ui_gauge_temperatura",
+        "type": "ui_gauge",
+        "z": "a39c6af970d0b46b",
+        "name": "",
+        "group": "e1c1a2e0.0c8a3",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Temperatura",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "25",
+        "seg2": "35",
+        "diff": false,
+        "className": "",
+        "x": 410,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "ui_chart_temperatura",
+        "type": "ui_chart",
+        "z": "a39c6af970d0b46b",
+        "name": "",
+        "group": "e1c1a2e0.0c8a3",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "label": "Temperatura",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "1",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "outputs": 1,
+        "x": 410,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "mqtt_in_vibracao",
+        "type": "mqtt in",
+        "z": "a39c6af970d0b46b",
+        "name": "Vibração",
+        "topic": "esp32/alertas/vibracao",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "b6a0d7e9.8a9c48",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 210,
+        "y": 240,
+        "wires": [
+            [
+                "ui_gauge_vibracao",
+                "ui_chart_vibracao"
+            ]
+        ]
+    },
+    {
+        "id": "ui_gauge_vibracao",
+        "type": "ui_gauge",
+        "z": "a39c6af970d0b46b",
+        "name": "",
+        "group": "e1c1a2e0.0c8a3",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Vibração",
+        "label": "",
+        "format": "{{value}}",
+        "min": "0",
+        "max": "4095",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "1000",
+        "seg2": "3000",
+        "x": 410,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "ui_chart_vibracao",
+        "type": "ui_chart",
+        "z": "a39c6af970d0b46b",
+        "name": "",
+        "group": "e1c1a2e0.0c8a3",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "label": "Vibração",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "1",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "outputs": 1,
+        "x": 410,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "mqtt_in_nivel_agua",
+        "type": "mqtt in",
+        "z": "a39c6af970d0b46b",
+        "name": "Nível da Água",
+        "topic": "esp32/alertas/nivel_agua",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "b6a0d7e9.8a9c48",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 210,
+        "y": 360,
+        "wires": [
+            [
+                "ui_gauge_nivel_agua",
+                "ui_chart_nivel_agua"
+            ]
+        ]
+    },
+    {
+        "id": "ui_gauge_nivel_agua",
+        "type": "ui_gauge",
+        "z": "a39c6af970d0b46b",
+        "name": "",
+        "group": "e1c1a2e0.0c8a3",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Nível da Água",
+        "label": "cm",
+        "format": "{{value}}",
+        "min": "0",
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "10",
+        "seg2": "5",
+        "diff": false,
+        "className": "",
+        "x": 410,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "ui_chart_nivel_agua",
+        "type": "ui_chart",
+        "z": "a39c6af970d0b46b",
+        "name": "",
+        "group": "e1c1a2e0.0c8a3",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "label": "Nível da Água",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "1",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "outputs": 1,
+        "x": 410,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "mqtt_in_ultimo_alerta",
+        "type": "mqtt in",
+        "z": "a39c6af970d0b46b",
+        "name": "Último Alerta",
+        "topic": "esp32/alertas/ultimo_alerta",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "b6a0d7e9.8a9c48",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 210,
+        "y": 480,
+        "wires": [
+            [
+                "ui_text_ultimo_alerta"
+            ]
+        ]
+    },
+    {
+        "id": "ui_text_ultimo_alerta",
+        "type": "ui_text",
+        "z": "a39c6af970d0b46b",
+        "group": "e1c1a2e0.0c8a3",
+        "order": 8,
+        "width": 0,
+        "height": 0,
+        "name": "Status do Alerta",
+        "label": "Último Alerta:",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 410,
+        "y": 480,
+        "wires": []
+    }
+]
